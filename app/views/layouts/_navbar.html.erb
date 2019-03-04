@@ -1,0 +1,8 @@
+<h1><%= @note.id ? 'Edit note' : 'Create Note' %></h1>
+
+<%= form_for @note do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :body, required: true, autofocus: true %>
+
+  <%= f.submit %>
+<% end %>
