@@ -1,8 +1,5 @@
-<h1><%= @note.id ? 'Edit note' : 'Create Note' %></h1>
+<%= link_to 'Home', root_path %>
+<%= link_to 'View', notes_path %>
 
-<%= form_for @note do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :body, required: true, autofocus: true %>
 
-  <%= f.submit %>
-<% end %>
+

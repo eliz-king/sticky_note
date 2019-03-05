@@ -1,24 +1,25 @@
 class NotesController < ApplicationController
   
-  before action :find_note only: [:show, :update, :edit, :destroy]
+  before_action :find_note, only: [:show, :update, :edit, :destroy]
 
   def show
   end
   
   def index
-    @notes = Notes.all
-    render partial: 'form'
+    @notes = Note.all
+    
   end
 
   def new
     @note = Note.new
+    render partial: 'form'
   end
 
   def create
     @note = Note.new(note_params)
     
     if @note.save
-      redirect_to notes_path
+      redirect_to note_path(@note)
     else
       render :new
     end
@@ -43,10 +44,11 @@ class NotesController < ApplicationController
 
   private
   def note_params
-    params.require(:note).permis(:name)
+    params.require(:note).permit(:body)
   end
 
   def find_note
+    
     @note = Note.find(params[:id])
   end
 
